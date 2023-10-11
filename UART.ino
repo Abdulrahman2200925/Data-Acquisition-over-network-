@@ -158,7 +158,8 @@ void INT0_init() {
 
 // External interrupt INT0 ISR
 ISR(INT0_vect) {
-	if(GET_BIT(PIND,PIND2)==1){UART_transmitString("button pressed");}
+	unsigned char button_state=GET_BIT(PIND,PIND2);
+	if(button_state==1){UART_transmitString("button pressed");}
 	//else{UART_transmitString("button not pressed");}
 //}
 }
@@ -168,7 +169,7 @@ ISR(USART_RX_vect) {
 	if (receivedChar == '\n' || receivedChar == '\r') {
 		receivedString[stringIndex] = '\0';  // Null-terminate the received string
 		stringComplete = 1;  // Set the flag to indicate that the string is complete
-		} else if (stringIndex < BUFFER_SIZE - 1) {
+		} else if (stringIndex < BUFFER_SIZE - 1) {	
 		receivedString[stringIndex] = receivedChar;  // Store the received character in the buffer
 		stringIndex++;  // Increment the buffer index
 	}
