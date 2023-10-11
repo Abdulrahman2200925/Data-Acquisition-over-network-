@@ -22,7 +22,7 @@ int main(void){
    // set the switch pin as output
    DIO_u8SetPinDirection(DIO_PORTD,DIO_PIN2,DIO_PIN_INPUT);
    // set the switch as pull down
-   DIO_u8SetPinValue(DIO_PORTD,DIO_PIN2,DIO_PIN_LOW );
+   DIO_u8SetPinValue(DIO_PORTD,DIO_PIN2,DIO_PIN_LOW);
   
    // Set PD1 as output (for TX)
    DIO_u8SetPinDirection(DIO_PORTD,DIO_PIN1,DIO_PIN_OUTPUT);
