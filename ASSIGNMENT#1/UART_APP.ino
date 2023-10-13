@@ -32,7 +32,7 @@ int main(void){
     DIO_u8SetPinDirection(DIO_PORTD,DIO_PIN0,DIO_PIN_INPUT );
 	
 	  unsigned char led_state = 0; // flag to detect the led state
-while(1){
+ while(1){
 		
 	      
 			
@@ -44,9 +44,10 @@ while(1){
 				
           // Check if the received UART data is valid
 				char valid_input =is_valid_uart_input( receivedString);
-				if (valid_input==1) {
-          UART_transmitString("valid input\n");
+				if (valid_input) {
+         
 					if (strcmp( receivedString, "ledon") == 0) {
+             UART_transmitString("valid input\n");
             // Check if the LED is already on
 						if (led_state) {
 							UART_transmitString("The LED is already on.\n");
@@ -57,6 +58,7 @@ while(1){
 							led_state = 1; // Update LED state
 						}
 						} else if (strcmp(receivedString, "ledoff") == 0) {
+               UART_transmitString("valid input\n");
 						
 						// Check if the LED is already off
 						if (!led_state) {
@@ -68,7 +70,7 @@ while(1){
 						}
 						
 					}
-					else{
+					 else {
 						UART_transmitString("invalid inputs\n");
 					}
 
@@ -82,6 +84,7 @@ while(1){
 			}
 	
 	
+
 }
 void turn_on_led(void){
    DIO_u8SetPinValue(DIO_PORTB,DIO_PIN5,DIO_PIN_HIGH );
@@ -94,7 +97,7 @@ ISR(INT0_vect) {
  
   unsigned char button_reading=DIO_u8GetPinValue(DIO_PORTD,DIO_PIN2,&button_state);
 	if(button_state==1){UART_transmitString("button pressed\n");}
-
+  
 }
 
 ISR(USART_RX_vect) {
